@@ -8,7 +8,6 @@ use Filament\Tables;
 use Filament\Forms\Get;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
-use App\Models\TingkatJabatan;
 use Filament\Resources\Resource;
 use Illuminate\Support\Facades\Hash;
 use App\Filament\Exports\UserExporter;
@@ -39,16 +38,6 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('unit_id')
-                    ->relationship('unit', 'nama'),
-                Forms\Components\Select::make('golongan_id')
-                    ->relationship('golongan', 'nama')
-                    ->live(),
-                Forms\Components\Select::make('tingkat_id')
-                    ->options(fn (Get $get) => TingkatJabatan::where('golongan_id', $get('golongan_id'))->pluck('title', 'id'))
-                    ->disabled(fn (Get $get) => $get('golongan_id') === null),
-                Forms\Components\Select::make('jabatan_id')
-                    ->relationship('jabatan', 'title'),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
@@ -79,15 +68,6 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label('Nama')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('unit.nama')
-                    ->label('Unit')
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('jabatan.title')
-                    ->label('Jabatan')
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('golongan.nama')
-                    ->sortable()
-                    ->formatStateUsing(fn (User $user) => $user->golongan->nama . ' - ' . $user->tingkat->title),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('username')

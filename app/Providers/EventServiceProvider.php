@@ -45,10 +45,6 @@ class EventServiceProvider extends ServiceProvider
     public function boot(): void
     {
         User::observe(UserObserver::class);
-        Penilaian::observe(PenilaianObserver::class);
-        Penilaian::observe(PenilaianAfterCommitObserver::class);
-        //Periode::observe(PeriodeObserver::class);
-        KPIPenilaian::observe(KPIPenilaianObserver::class);
     }
 
     /**

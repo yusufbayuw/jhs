@@ -57,28 +57,10 @@ class User extends Authenticatable implements FilamentUser
         return true;//(auth()->user()->is_can_login);
     }
 
-    public function penilaian(): HasMany
+    public function hotel(): BelongsTo
     {
-        return $this->hasMany(Penilaian::class, 'user_id', 'id');
+        return $this->belongsTo(Hotel::class, 'hotel_id', 'id');
     }
 
-    public function unit(): BelongsTo
-    {
-        return $this->belongsTo(Unit::class, 'unit_id', 'id');
-    }
-
-    public function golongan(): BelongsTo
-    {
-        return $this->belongsTo(Golongan::class, 'golongan_id', 'id');
-    }
-
-    public function jabatan(): BelongsTo
-    {
-        return $this->belongsTo(Jabatan::class, 'jabatan_id', 'id');
-    }
-
-    public function tingkat(): BelongsTo
-    {
-        return $this->belongsTo(TingkatJabatan::class, 'tingkat_id', 'id');
-    }
+    
 }

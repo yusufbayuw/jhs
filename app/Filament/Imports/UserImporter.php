@@ -14,12 +14,6 @@ class UserImporter extends Importer
     public static function getColumns(): array
     {
         return [
-            ImportColumn::make('unit')
-                ->relationship(),
-            ImportColumn::make('golongan')
-                ->relationship(),
-            ImportColumn::make('jabatan')
-                ->relationship(),
             ImportColumn::make('name')
                 ->requiredMapping()
                 ->rules(['required', 'max:255']),

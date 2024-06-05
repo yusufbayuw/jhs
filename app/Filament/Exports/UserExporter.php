@@ -16,10 +16,6 @@ class UserExporter extends Exporter
         return [
             ExportColumn::make('id')
                 ->label('ID'),
-            ExportColumn::make('unit.id'),
-            ExportColumn::make('golongan.id'),
-            ExportColumn::make('jabatan.title'),
-            ExportColumn::make('tingkat.title'),
             ExportColumn::make('name'),
             ExportColumn::make('email'),
             ExportColumn::make('username'),
