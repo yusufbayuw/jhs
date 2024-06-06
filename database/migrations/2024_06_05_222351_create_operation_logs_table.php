@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('operation_logs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('hotel_id')->nullable()->constrained('hotels')->nullOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete();
+            $table->text('description')->nullable();
+            $table->date('date')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

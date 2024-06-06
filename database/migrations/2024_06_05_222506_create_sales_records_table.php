@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('sales_records', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('hotel_id')->nullable()->constrained('hotels')->nullOnDelete();
+            $table->decimal('amount');
+            $table->string('description');
             $table->timestamps();
         });
     }

@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('marketing_campaigns', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('hotel_id')->nullable()->constrained('hotels')->nullOnDelete();
+            $table->string('name');
+            $table->date('start')->nullable();
+            $table->date('end')->nullable();
+            $table->decimal('budget')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

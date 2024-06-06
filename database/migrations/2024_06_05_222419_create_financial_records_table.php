@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('financial_records', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('hotel_id')->nullable()->constrained('hotels')->nullOnDelete();
+            $table->decimal('amount')->nullable();
+            $table->string('type')->nullable();
+            $table->date('date')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

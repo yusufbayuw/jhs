@@ -11,6 +11,7 @@
         "php": "^8.1",
         "barryvdh/laravel-dompdf": "^2.0",
         "bezhansalleh/filament-shield": "^3.0",
+        "chrisreedio/socialment": "^3.8",
         "edwink/filament-user-activity": "^1.0",
         "eightynine/filament-excel-import": "^3.0",
         "filament/filament": "^3.0-stable",

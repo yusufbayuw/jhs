@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('risk_management', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('hotel_id')->nullable()->constrained('hotels')->nullOnDelete();
+            $table->string('description')->nullable();
+            $table->date('date')->nullable();
+            $table->string('level')->nullable();
+            $table->string('mitigation_plan')->nullable();
             $table->timestamps();
         });
     }

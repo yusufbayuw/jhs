@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('booking_id')->nullable()->constrained('bookings')->nullOnDelete();
+            $table->date('date')->nullable();
+            $table->decimal('amount')->nullable();
+            $table->string('method')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
