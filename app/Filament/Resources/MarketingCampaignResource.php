@@ -17,7 +17,17 @@ class MarketingCampaignResource extends Resource
 {
     protected static ?string $model = MarketingCampaign::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-megaphone';
+
+    protected static ?string $modelLabel = 'Marketing';
+
+    //protected static ?string $navigationGroup = 'Administrator';
+
+    protected static ?int $navigationSort = 9;
+
+    protected static ?string $navigationLabel = 'Marketing';
+
+    protected static ?string $slug = 'marketing';
 
     public static function form(Form $form): Form
     {

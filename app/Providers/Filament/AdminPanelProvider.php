@@ -13,6 +13,7 @@ use Filament\Navigation\NavigationGroup;
 use App\Filament\Widgets\CustomMenuWidget;
 use Filament\Http\Middleware\Authenticate;
 use Jeffgreco13\FilamentBreezy\BreezyCore;
+use ChrisReedIO\Socialment\SocialmentPlugin;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
@@ -34,15 +35,15 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->default()    
-            ->id('app')
-            ->path('')
+            ->id('portal')
+            ->path('portal')
             ->login(Login::class)
             ->darkMode(false)
-            ->brandName('PPAK')
+            ->brandName('Jaringan Hotel Syariah')
             ->brandLogo(asset('images/brand.png'))
             ->brandLogoHeight('3rem')
             ->profile()
-            ->topNavigation()
+            //->topNavigation()
             ->navigationGroups([
                 NavigationGroup::make()
                     ->label('Pegawai')
@@ -96,6 +97,7 @@ class AdminPanelProvider extends PanelProvider
                     ->imageProvider(Triangles::make()),
                 SimpleLightBoxPlugin::make(),
                 FilamentUserActivityPlugin::make(),
+                SocialmentPlugin::make(),
             ])
             ->unsavedChangesAlerts()
             //->spa()

@@ -17,7 +17,17 @@ class SalesRecordResource extends Resource
 {
     protected static ?string $model = SalesRecord::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-chart-bar';
+
+    protected static ?string $modelLabel = 'Penjualan';
+
+    //protected static ?string $navigationGroup = 'Administrator';
+
+    protected static ?int $navigationSort = 15;
+
+    protected static ?string $navigationLabel = 'Penjualan';
+
+    protected static ?string $slug = 'sales';
 
     public static function form(Form $form): Form
     {

@@ -17,7 +17,17 @@ class OperationLogResource extends Resource
 {
     protected static ?string $model = OperationLog::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-wrench-screwdriver';
+
+    protected static ?string $modelLabel = 'Operasional';
+
+    //protected static ?string $navigationGroup = 'Administrator';
+
+    protected static ?int $navigationSort = 8;
+
+    protected static ?string $navigationLabel = 'Operasional';
+
+    protected static ?string $slug = 'operasional';
 
     public static function form(Form $form): Form
     {
