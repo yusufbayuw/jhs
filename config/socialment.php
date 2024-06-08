@@ -15,6 +15,14 @@ return [
         // 	'icon' => 'fab-microsoft', // Font Awesome icon class
         // 	'label' => 'Azure Active Directory', // The label to display for the provider
         // ]
+        'google' => [
+            'icon' => 'fab-google', // Font Awesome icon class
+            'label' => 'Google', // The label to display for the provider
+        ],
+        'azure' => [
+            'icon' => 'fab-microsoft', // Font Awesome icon class
+            'label' => 'Microsoft', // The label to display for the provider
+        ]
     ],
 
     'view' => [

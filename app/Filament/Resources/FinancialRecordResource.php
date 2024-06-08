@@ -17,13 +17,13 @@ class FinancialRecordResource extends Resource
 {
     protected static ?string $model = FinancialRecord::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-report';
+    protected static ?string $navigationIcon = 'heroicon-o-document-chart-bar';
 
     protected static ?string $modelLabel = 'Finansial';
 
     //protected static ?string $navigationGroup = 'Administrator';
 
-    protected static ?int $navigationSort = 15;
+    protected static ?int $navigationSort = 16;
 
     protected static ?string $navigationLabel = 'Finansial';
 

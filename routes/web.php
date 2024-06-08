@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LaporanBulananCabangController;
 use App\Http\Controllers\PenilaianController;
+use App\Livewire\Hotel;
+use App\Livewire\Landing;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +18,8 @@ use App\Http\Controllers\PenilaianController;
 |
 */
 Route::get('/laravel/login', function () {
-    return redirect('/login');
-})->middleware('auth')->name('login');
-Route::get('angka-kredit-laporan/export/', [PenilaianController::class, 'export']);
+    return redirect('portal/login');
+})->name('login');
+Route::get('/', Landing::class)->name('home');
+Route::get('/hotel/{id}', Hotel::class)->name('hotel');
+//Route::get('angka-kredit-laporan/export/', [PenilaianController::class, 'export']);

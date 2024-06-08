@@ -38,6 +38,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('portal')
             ->path('portal')
             ->login(Login::class)
+            ->registration()
             ->darkMode(false)
             ->brandName('Jaringan Hotel Syariah')
             ->brandLogo(asset('images/brand.png'))

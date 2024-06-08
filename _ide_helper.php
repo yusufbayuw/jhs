@@ -13431,6 +13431,16 @@ namespace Illuminate\Support\Facades {
                         /** @var \Illuminate\Routing\Router $instance */
                         return $instance->macroCall($method, $parameters);
         }
+                    /**
+         * 
+         *
+         * @see \ChrisReedIO\Socialment\SocialmentServiceProvider::packageBooted()
+         * @param string $prefix
+         * @static 
+         */        public static function spaAuth($prefix = 'spa')
+        {
+                        return \Illuminate\Routing\Router::spaAuth($prefix);
+        }
             }
             /**
      * 
@@ -17191,6 +17201,129 @@ namespace Illuminate\Support\Facades {
             }
     }
 
+namespace Laravel\Socialite\Facades {
+            /**
+     * 
+     *
+     * @method array getScopes()
+     * @method \Laravel\Socialite\Contracts\Provider scopes(array|string $scopes)
+     * @method \Laravel\Socialite\Contracts\Provider setScopes(array|string $scopes)
+     * @method \Laravel\Socialite\Contracts\Provider redirectUrl(string $url)
+     * @see \Laravel\Socialite\SocialiteManager
+     */        class Socialite {
+                    /**
+         * Get a driver instance.
+         *
+         * @param string $driver
+         * @return mixed 
+         * @static 
+         */        public static function with($driver)
+        {
+                        /** @var \Laravel\Socialite\SocialiteManager $instance */
+                        return $instance->with($driver);
+        }
+                    /**
+         * Build an OAuth 2 provider instance.
+         *
+         * @param string $provider
+         * @param array $config
+         * @return \Laravel\Socialite\Two\AbstractProvider 
+         * @static 
+         */        public static function buildProvider($provider, $config)
+        {
+                        /** @var \Laravel\Socialite\SocialiteManager $instance */
+                        return $instance->buildProvider($provider, $config);
+        }
+                    /**
+         * Format the server configuration.
+         *
+         * @param array $config
+         * @return array 
+         * @static 
+         */        public static function formatConfig($config)
+        {
+                        /** @var \Laravel\Socialite\SocialiteManager $instance */
+                        return $instance->formatConfig($config);
+        }
+                    /**
+         * Forget all of the resolved driver instances.
+         *
+         * @return \Laravel\Socialite\SocialiteManager 
+         * @static 
+         */        public static function forgetDrivers()
+        {
+                        /** @var \Laravel\Socialite\SocialiteManager $instance */
+                        return $instance->forgetDrivers();
+        }
+                    /**
+         * Set the container instance used by the manager.
+         *
+         * @param \Illuminate\Contracts\Container\Container $container
+         * @return \Laravel\Socialite\SocialiteManager 
+         * @static 
+         */        public static function setContainer($container)
+        {
+                        /** @var \Laravel\Socialite\SocialiteManager $instance */
+                        return $instance->setContainer($container);
+        }
+                    /**
+         * Get the default driver name.
+         *
+         * @return string 
+         * @throws \InvalidArgumentException
+         * @static 
+         */        public static function getDefaultDriver()
+        {
+                        /** @var \Laravel\Socialite\SocialiteManager $instance */
+                        return $instance->getDefaultDriver();
+        }
+                    /**
+         * Get a driver instance.
+         *
+         * @param string|null $driver
+         * @return mixed 
+         * @throws \InvalidArgumentException
+         * @static 
+         */        public static function driver($driver = null)
+        {            //Method inherited from \Illuminate\Support\Manager         
+                        /** @var \Laravel\Socialite\SocialiteManager $instance */
+                        return $instance->driver($driver);
+        }
+                    /**
+         * Register a custom driver creator Closure.
+         *
+         * @param string $driver
+         * @param \Closure $callback
+         * @return \Laravel\Socialite\SocialiteManager 
+         * @static 
+         */        public static function extend($driver, $callback)
+        {            //Method inherited from \Illuminate\Support\Manager         
+                        /** @var \Laravel\Socialite\SocialiteManager $instance */
+                        return $instance->extend($driver, $callback);
+        }
+                    /**
+         * Get all of the created "drivers".
+         *
+         * @return array 
+         * @static 
+         */        public static function getDrivers()
+        {            //Method inherited from \Illuminate\Support\Manager         
+                        /** @var \Laravel\Socialite\SocialiteManager $instance */
+                        return $instance->getDrivers();
+        }
+                    /**
+         * Get the container instance used by the manager.
+         *
+         * @return \Illuminate\Contracts\Container\Container 
+         * @static 
+         */        public static function getContainer()
+        {            //Method inherited from \Illuminate\Support\Manager         
+                        /** @var \Laravel\Socialite\SocialiteManager $instance */
+                        return $instance->getContainer();
+        }
+            }
+    }
+
 namespace AnourValar\EloquentSerialize\Facades {
             /**
      * 
@@ -17692,12 +17825,259 @@ namespace BezhanSalleh\FilamentShield\Facades {
             }
     }
 
+namespace ChrisReedIO\Socialment\Facades {
+            /**
+     * 
+     *
+     * @see \ChrisReedIO\Socialment\SocialmentPlugin
+     */        class Socialment {
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function getId()
+        {
+                        /** @var \ChrisReedIO\Socialment\SocialmentPlugin $instance */
+                        return $instance->getId();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function getProviders()
+        {
+                        /** @var \ChrisReedIO\Socialment\SocialmentPlugin $instance */
+                        return $instance->getProviders();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function getProvider($provider)
+        {
+                        /** @var \ChrisReedIO\Socialment\SocialmentPlugin $instance */
+                        return $instance->getProvider($provider);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function register($panel)
+        {
+                        /** @var \ChrisReedIO\Socialment\SocialmentPlugin $instance */
+                        return $instance->register($panel);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function boot($panel)
+        {
+                        /** @var \ChrisReedIO\Socialment\SocialmentPlugin $instance */
+                        return $instance->boot($panel);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function make()
+        {
+                        return \ChrisReedIO\Socialment\SocialmentPlugin::make();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function get()
+        {
+                        return \ChrisReedIO\Socialment\SocialmentPlugin::get();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function visible($visible = null)
+        {
+                        /** @var \ChrisReedIO\Socialment\SocialmentPlugin $instance */
+                        return $instance->visible($visible);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function userModel($model)
+        {
+                        /** @var \ChrisReedIO\Socialment\SocialmentPlugin $instance */
+                        return $instance->userModel($model);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function loginRoute($route = null)
+        {
+                        /** @var \ChrisReedIO\Socialment\SocialmentPlugin $instance */
+                        return $instance->loginRoute($route);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function getLoginRoute()
+        {
+                        /** @var \ChrisReedIO\Socialment\SocialmentPlugin $instance */
+                        return $instance->getLoginRoute();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function homeRoute($route = null)
+        {
+                        /** @var \ChrisReedIO\Socialment\SocialmentPlugin $instance */
+                        return $instance->homeRoute($route);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function getHomeRoute()
+        {
+                        /** @var \ChrisReedIO\Socialment\SocialmentPlugin $instance */
+                        return $instance->getHomeRoute();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function globalPreLogin($callback)
+        {
+                        return \ChrisReedIO\Socialment\SocialmentPlugin::globalPreLogin($callback);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function globalPostLogin($callback)
+        {
+                        return \ChrisReedIO\Socialment\SocialmentPlugin::globalPostLogin($callback);
+        }
+                    /**
+         * Sets up a callback to be called before a user is logged in.
+         * 
+         * This is useful if you wish to check a user's roles before allowing them to login.
+         * Throw a Socialment\Exceptions\AbortedLoginException to abort the login.
+         *
+         * @static 
+         */        public static function preLogin($callback)
+        {
+                        /** @var \ChrisReedIO\Socialment\SocialmentPlugin $instance */
+                        return $instance->preLogin($callback);
+        }
+                    /**
+         * Executes the pre login callback. Set up closure to execute via the preLogin method.
+         *
+         * @static 
+         */        public static function executePreLogin($account)
+        {
+                        /** @var \ChrisReedIO\Socialment\SocialmentPlugin $instance */
+                        return $instance->executePreLogin($account);
+        }
+                    /**
+         * Sets up a callback to be called after a user logs in.
+         *
+         * @static 
+         */        public static function postLogin($callback)
+        {
+                        /** @var \ChrisReedIO\Socialment\SocialmentPlugin $instance */
+                        return $instance->postLogin($callback);
+        }
+                    /**
+         * Executes the post login callback. Set up closure to execute via the postLogin method.
+         *
+         * @static 
+         */        public static function executePostLogin($account)
+        {
+                        /** @var \ChrisReedIO\Socialment\SocialmentPlugin $instance */
+                        return $instance->executePostLogin($account);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function registerProvider($provider, $icon, $label, $scopes = [])
+        {
+                        /** @var \ChrisReedIO\Socialment\SocialmentPlugin $instance */
+                        return $instance->registerProvider($provider, $icon, $label, $scopes);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function multiPanel($multiPanel = true)
+        {
+                        /** @var \ChrisReedIO\Socialment\SocialmentPlugin $instance */
+                        return $instance->multiPanel($multiPanel);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function isMultiPanel()
+        {
+                        /** @var \ChrisReedIO\Socialment\SocialmentPlugin $instance */
+                        return $instance->isMultiPanel();
+        }
+                    /**
+         * 
+         *
+         * @template T
+         * @param \ChrisReedIO\Socialment\T  | callable(): T  $value
+         * @param array<string, mixed> $namedInjections
+         * @param array<string, mixed> $typedInjections
+         * @return \ChrisReedIO\Socialment\T 
+         * @static 
+         */        public static function evaluate($value, $namedInjections = [], $typedInjections = [])
+        {
+                        /** @var \ChrisReedIO\Socialment\SocialmentPlugin $instance */
+                        return $instance->evaluate($value, $namedInjections, $typedInjections);
+        }
+            }
+    }
+
 namespace Edwink\FilamentUserActivity\Facades {
             /**
      * 
      *
      * @see \Edwink\FilamentUserActivity\FilamentUserActivity
      */        class FilamentUserActivity {
+            }
+    }
+
+namespace Hydrat\TableLayoutToggle\Facades {
+            /**
+     * 
+     *
+     * @see \Hydrat\TableLayoutToggle\TableLayoutToggle
+     */        class TableLayoutToggle {
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function getToggleViewAction($compact = false)
+        {
+                        /** @var \Hydrat\TableLayoutToggle\TableLayoutToggle $instance */
+                        return $instance->getToggleViewAction($compact);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */        public static function getToggleViewTableAction($compact = false)
+        {
+                        /** @var \Hydrat\TableLayoutToggle\TableLayoutToggle $instance */
+                        return $instance->getToggleViewTableAction($compact);
+        }
             }
     }
 
@@ -18903,6 +19283,60 @@ namespace Illuminate\Http {
          */        public static function hasValidSignatureWhileIgnoring($ignoreQuery = [], $absolute = true)
         {
                         return \Illuminate\Http\Request::hasValidSignatureWhileIgnoring($ignoreQuery, $absolute);
+        }
+            }
+    }
+
+namespace Illuminate\Routing {
+            /**
+     * 
+     *
+     * @mixin \Illuminate\Routing\RouteRegistrar
+     */        class Router {
+                    /**
+         * 
+         *
+         * @see \ChrisReedIO\Socialment\SocialmentServiceProvider::packageBooted()
+         * @param string $prefix
+         * @static 
+         */        public static function spaAuth($prefix = 'spa')
+        {
+                        return \Illuminate\Routing\Router::spaAuth($prefix);
+        }
+            }
+            /**
+     * 
+     *
+     */        class Route {
+                    /**
+         * 
+         *
+         * @see \Livewire\Features\SupportLazyLoading\SupportLazyLoading::registerRouteMacro()
+         * @param mixed $enabled
+         * @static 
+         */        public static function lazy($enabled = true)
+        {
+                        return \Illuminate\Routing\Route::lazy($enabled);
+        }
+                    /**
+         * 
+         *
+         * @see \Spatie\Permission\PermissionServiceProvider::registerMacroHelpers()
+         * @param mixed $roles
+         * @static 
+         */        public static function role($roles = [])
+        {
+                        return \Illuminate\Routing\Route::role($roles);
+        }
+                    /**
+         * 
+         *
+         * @see \Spatie\Permission\PermissionServiceProvider::registerMacroHelpers()
+         * @param mixed $permissions
+         * @static 
+         */        public static function permission($permissions = [])
+        {
+                        return \Illuminate\Routing\Route::permission($permissions);
         }
             }
     }
@@ -21474,44 +21908,6 @@ namespace Livewire\Features\SupportTesting {
          */        public static function assertTableColumnSummarizerExists($columnName, $summarizerId)
         {
                         return \Livewire\Features\SupportTesting\Testable::assertTableColumnSummarizerExists($columnName, $summarizerId);
-        }
-            }
-    }
-
-namespace Illuminate\Routing {
-            /**
-     * 
-     *
-     */        class Route {
-                    /**
-         * 
-         *
-         * @see \Livewire\Features\SupportLazyLoading\SupportLazyLoading::registerRouteMacro()
-         * @param mixed $enabled
-         * @static 
-         */        public static function lazy($enabled = true)
-        {
-                        return \Illuminate\Routing\Route::lazy($enabled);
-        }
-                    /**
-         * 
-         *
-         * @see \Spatie\Permission\PermissionServiceProvider::registerMacroHelpers()
-         * @param mixed $roles
-         * @static 
-         */        public static function role($roles = [])
-        {
-                        return \Illuminate\Routing\Route::role($roles);
-        }
-                    /**
-         * 
-         *
-         * @see \Spatie\Permission\PermissionServiceProvider::registerMacroHelpers()
-         * @param mixed $permissions
-         * @static 
-         */        public static function permission($permissions = [])
-        {
-                        return \Illuminate\Routing\Route::permission($permissions);
         }
             }
     }
@@ -25581,11 +25977,14 @@ namespace  {
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
             class Vite extends \Illuminate\Support\Facades\Vite {}
+            class Socialite extends \Laravel\Socialite\Facades\Socialite {}
             class EloquentSerialize extends \AnourValar\EloquentSerialize\Facades\EloquentSerializeFacade {}
             class Pdf extends \Barryvdh\DomPDF\Facade\Pdf {}
             class PDF extends \Barryvdh\DomPDF\Facade\Pdf {}
             class FilamentShield extends \BezhanSalleh\FilamentShield\Facades\FilamentShield {}
+            class Socialment extends \ChrisReedIO\Socialment\Facades\Socialment {}
             class FilamentUserActivity extends \Edwink\FilamentUserActivity\Facades\FilamentUserActivity {}
+            class TableLayoutToggle extends \Hydrat\TableLayoutToggle\Facades\TableLayoutToggle {}
             class Image extends \Intervention\Image\Facades\Image {}
             class FilamentBreezy extends \Jeffgreco13\FilamentBreezy\Facades\FilamentBreezy {}
             class Livewire extends \Livewire\Livewire {}
