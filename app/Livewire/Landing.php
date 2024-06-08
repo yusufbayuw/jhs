@@ -72,7 +72,7 @@ class Landing extends Component implements HasForms, HasTable
                 ImageColumn::make('room.image')
                     ->size(300)
                     ->checkFileExistence(true)
-                    ->defaultImageUrl(url('storage/placeholder.jpg'))
+                    ->defaultImageUrl(url('images/placeholder.jpg'))
                     ->alignCenter(),
                     //->simpleLightbox(),
                 Split::make([

@@ -81,7 +81,7 @@ class Hotel extends Component implements HasForms, HasTable
                 ImageColumn::make('image')
                     ->size(300)
                     ->checkFileExistence(true)
-                    ->defaultImageUrl(url('storage/placeholder2.jpg'))
+                    ->defaultImageUrl(url('images/placeholder2.jpg'))
                     ->alignCenter(),
                     //->simpleLightbox(),
                 Split::make([
