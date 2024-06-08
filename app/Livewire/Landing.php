@@ -53,7 +53,8 @@ class Landing extends Component implements HasForms, HasTable
             ])
             ->actions([
                 //
-            ]);
+            ])
+            ->recordUrl(fn (Hotel $hotel) => route('hotel', $hotel->id));
     }
 
     protected function getListTableColumns(): array
