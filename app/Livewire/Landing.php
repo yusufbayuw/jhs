@@ -54,7 +54,8 @@ class Landing extends Component implements HasForms, HasTable
             ->actions([
                 //
             ])
-            ->recordUrl(fn (Hotel $hotel) => route('hotel', $hotel->id));
+           //->recordUrl(fn (Hotel $hotel) => route('hotel', $hotel->id))
+           ;
     }
 
     protected function getListTableColumns(): array
@@ -85,7 +86,7 @@ class Landing extends Component implements HasForms, HasTable
                         ->label('Nama Hotel')
                         ->sortable(),
                     TextColumn::make('name')
-                        ->formatStateUsing(fn () => 'Lihat Kamar')
+                        ->formatStateUsing(fn () => 'Pilih Kamar')
                         ->size(TextColumn\TextColumnSize::Large)
                         ->weight(FontWeight::Bold)
                         ->badge()
@@ -107,9 +108,8 @@ class Landing extends Component implements HasForms, HasTable
                         ->weight(FontWeight::SemiBold)
                         ->size(TextColumn\TextColumnSize::Medium)
                         ->sortable(),
-                ]),
+                ])->columnSpanFull(),
                 TextColumn::make('address')
-                    ->columnSpanFull()
                     ->alignLeft()
                     ->size(TextColumn\TextColumnSize::Small)
                     ,
