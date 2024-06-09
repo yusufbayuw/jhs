@@ -71,7 +71,7 @@ class Landing extends Component implements HasForms, HasTable
     {
         return [
             Stack::make([                
-                ImageColumn::make('room.image')
+                ImageColumn::make('image')
                     ->size(300)
                     ->checkFileExistence(true)
                     ->defaultImageUrl(url('images/placeholder.jpg'))
