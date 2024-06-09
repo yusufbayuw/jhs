@@ -45,7 +45,7 @@ class HotelResource extends Resource
                 Forms\Components\TextInput::make('description')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('image'),
+                Forms\Components\FileUpload::make('image'),
             ]);
     }
 
