@@ -26,8 +26,8 @@ class AuthSSOController extends Controller
                     'name' => $googleUser->name,
                     'avatar' => $googleUser->avatar,
                     'open_id' => $googleUser->id,
-                    'given_name' => $googleUser->user->given_name,
-                    'family_name' => $googleUser->user->family_name,
+                    //'given_name' => $googleUser->user->given_name,
+                    //'family_name' => $googleUser->user->family_name,
                 ]
             );
             Auth::login($user);
@@ -36,5 +36,38 @@ class AuthSSOController extends Controller
             return redirect(route('login'));
         }
     }
-    // MICROSOFT
+
+    // MICROSOFT AZURE
+    public function redirectToAzure()
+    {
+        return Socialite::driver('azure')->redirect();
+    }
+
+    public function handleAzureCallback()
+    {
+        try {
+            $azureUser = Socialite::driver('azure')->stateless()->user();
+
+            dd($azureUser);
+            // Find or create the user in the database
+            $user = User::firstOrCreate(
+                ['email' => $azureUser->getEmail()],
+                [
+                    'name' => $azureUser->getName(),
+                    'azure_id' => $azureUser->getId(),
+                    'avatar' => $azureUser->getAvatar(),
+                    // Add other fields you need to save
+                ]
+            );
+
+            // Log the user in
+            Auth::login($user);
+
+            // Redirect to the intended page
+            return redirect()->intended('/portal');
+        } catch (\Exception $e) {
+            // Handle the error
+            return redirect('/portal')->with('error', 'Failed to authenticate with Microsoft Azure');
+        }
+    }
 }
