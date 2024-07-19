@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b5f358294369ea5f1d726aa0de9b415b",
+    "content-hash": "eb5a383c54436c9f45e0fabb4e530404",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -7529,6 +7529,56 @@
             "time": "2024-05-04T07:57:39+00:00"
         },
         {
+            "name": "socialiteproviders/microsoft",
+            "version": "4.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SocialiteProviders/Microsoft.git",
+                "reference": "9f55e544f183c36096a14b2e61b5d6c9dc23961e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SocialiteProviders/Microsoft/zipball/9f55e544f183c36096a14b2e61b5d6c9dc23961e",
+                "reference": "9f55e544f183c36096a14b2e61b5d6c9dc23961e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^8.0",
+                "socialiteproviders/manager": "^4.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SocialiteProviders\\Microsoft\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Faust",
+                    "email": "hello@brianfaust.de"
+                }
+            ],
+            "description": "Microsoft OAuth2 Provider for Laravel Socialite",
+            "keywords": [
+                "laravel",
+                "microsoft",
+                "oauth",
+                "provider",
+                "socialite"
+            ],
+            "support": {
+                "docs": "https://socialiteproviders.com/microsoft",
+                "issues": "https://github.com/socialiteproviders/providers/issues",
+                "source": "https://github.com/socialiteproviders/providers"
+            },
+            "time": "2024-07-12T02:43:55+00:00"
+        },
+        {
             "name": "socialiteproviders/microsoft-azure",
             "version": "5.2.0",
             "source": {
@@ -14011,5 +14061,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.2.0"
 }
