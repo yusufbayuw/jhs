@@ -26,6 +26,7 @@ Route::get('/hotel/{id}', Hotel::class)->name('hotel');
 //Route::get('angka-kredit-laporan/export/', [PenilaianController::class, 'export']);
 
 Route::get('portal/login/google', [AuthSSOController::class, 'redirectToGoogle'])->name('login.google');
-
-// Route to handle the callback from Google
 Route::get('portal/login/google/callback', [AuthSSOController::class, 'handleGoogleCallback']);
+
+Route::get('portal/login/azure', [AuthSSOController::class, 'redirectToAzure'])->name('login.azure');
+Route::get('portal/login/azure/callback', [AuthSSOController::class, 'handleAzureCallback']);
