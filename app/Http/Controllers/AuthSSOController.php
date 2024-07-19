@@ -40,13 +40,13 @@ class AuthSSOController extends Controller
     // MICROSOFT AZURE
     public function redirectToAzure()
     {
-        return Socialite::driver('azure')->redirect();
+        return Socialite::driver('microsoft')->redirect();
     }
 
     public function handleAzureCallback()
     {
         try {
-            $azureUser = Socialite::driver('azure')->stateless()->user();
+            $azureUser = Socialite::driver('microsoft')->stateless()->user();
 
             dd($azureUser);
             // Find or create the user in the database
