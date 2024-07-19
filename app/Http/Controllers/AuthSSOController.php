@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
 class AuthSSOController extends Controller
@@ -17,7 +19,18 @@ class AuthSSOController extends Controller
     {
         try {
             $googleUser = Socialite::driver('google')->stateless()->user();
-            dd($googleUser);
+            
+            $user = User::firstOrCreate(
+                ['email' => $googleUser->email,],
+                [
+                    'name' => $googleUser->name,
+                    'avatar' => $googleUser->avatar,
+                    'open_id' => $googleUser->id,
+                    'given_name' => $googleUser->user->given_name,
+                    'family_name' => $googleUser->user->family_name,
+                ]
+            );
+            Auth::login($user);
             return redirect()->intended('/portal');
         } catch (\Throwable $th) {
             return redirect(route('login'));
