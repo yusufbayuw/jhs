@@ -27,7 +27,7 @@ return [
 
     'view' => [
         // Set the text above the provider list
-        'prompt' => 'Or Login Via',
+        'prompt' => 'atau Login melalui',
         // Or change out the view completely with your own
         'providers-list' => 'socialment::providers-list',
     ],

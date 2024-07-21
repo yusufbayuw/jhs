@@ -40,13 +40,13 @@ class AuthSSOController extends Controller
     // MICROSOFT AZURE
     public function redirectToAzure()
     {
-        return Socialite::driver('microsoft')->redirect();
+        return Socialite::driver('azure')->redirect();
     }
 
     public function handleAzureCallback()
     {
         try {
-            $azureUser = Socialite::driver('microsoft')->stateless()->user();
+            $azureUser = Socialite::driver('azure')->stateless()->user();
 
             dd($azureUser);
             // Find or create the user in the database
@@ -67,7 +67,7 @@ class AuthSSOController extends Controller
             return redirect()->intended('/portal');
         } catch (\Exception $e) {
             // Handle the error
-            return redirect('/portal')->with('error', 'Failed to authenticate with Microsoft Azure');
+            return redirect(route('login'));;
         }
     }
 }
