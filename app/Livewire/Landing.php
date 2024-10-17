@@ -23,27 +23,30 @@ class Landing extends Component implements HasForms, HasTable
     use InteractsWithTable;
     use InteractsWithForms;
     use HasToggleableTable;
-
-    public function getDefaultLayoutView(): string
-    {
-        return 'grid';
-    }
-
+    
     public function table(Table $table): Table
     {
         return $table
             ->query(Hotel::query())
-            ->columns($this->isGridLayout()
+            ->columns($this->getGridTableColumns())
+            /* untuk kombinasi grid dan list
+                ->columns($this->isGridLayout()
                 ? $this->getGridTableColumns()
-                : $this->getListTableColumns())
+                : $this->getListTableColumns()) */
             ->contentGrid(
+                [
+                    'md' => 2,
+                    'lg' => 3,
+                    'xl' => 4,
+                ]
+                /*  untuk kombinasi grid & list   
                 fn () => $this->isListLayout()
                     ? null
                     : [
                         'md' => 2,
                         'lg' => 3,
                         'xl' => 4,
-                    ]
+                    ] */
             )
             ->filters([
                 //
@@ -54,8 +57,7 @@ class Landing extends Component implements HasForms, HasTable
             ->actions([
                 //
             ])
-           //->recordUrl(fn (Hotel $hotel) => route('hotel', $hotel->id))
-           ;
+           ->recordUrl(fn (Hotel $hotel) => route('hotel', $hotel->id));
     }
 
     protected function getListTableColumns(): array
@@ -76,7 +78,6 @@ class Landing extends Component implements HasForms, HasTable
                     ->checkFileExistence(true)
                     ->defaultImageUrl(url('images/placeholder.jpg'))
                     ->alignCenter(),
-                    //->simpleLightbox(),
                 Split::make([
                     TextColumn::make('name')
                         ->size(TextColumn\TextColumnSize::Large)

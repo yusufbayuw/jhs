@@ -2,13 +2,13 @@
 
 return [
 
-    'default_layout' => 'list',
+    'default_layout' => 'grid',
 
     'toggle_action' => [
         /**
          * Should the toggle action get automatically displayed ?
          */
-        'enabled' => true,
+        'enabled' => false,
 
         /**
          * The filament view hook to render the action in.
@@ -31,6 +31,6 @@ return [
         /**
          * If enabled, changing the layout will affect all compatible tables of your app.
          */
-        'share_between_pages' => false,
+        'share_between_pages' => true,
     ],
 ];

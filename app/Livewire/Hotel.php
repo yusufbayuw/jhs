@@ -40,17 +40,25 @@ class Hotel extends Component implements HasForms, HasTable
     {
         return $table
             ->query(Room::query()->where('hotel_id', $this->id))
-            ->columns($this->isGridLayout()
+            ->columns($this->getGridTableColumns())
+            /* untuk kombinasi grid dan list
+                ->columns($this->isGridLayout()
                 ? $this->getGridTableColumns()
-                : $this->getListTableColumns())
+                : $this->getListTableColumns()) */
             ->contentGrid(
+                [
+                    'md' => 2,
+                    'lg' => 3,
+                    'xl' => 4,
+                ]
+                /*  untuk kombinasi grid & list   
                 fn () => $this->isListLayout()
                     ? null
                     : [
                         'md' => 2,
                         'lg' => 3,
                         'xl' => 4,
-                    ]
+                    ] */
             )
             ->filters([
                 //
@@ -62,7 +70,8 @@ class Hotel extends Component implements HasForms, HasTable
             ])
             ->actions([
                 //
-            ]);
+            ])
+            ->recordUrl(fn (Room $room) => route('room', ['id' => $room->id]));
     }
 
     protected function getListTableColumns(): array
@@ -83,7 +92,6 @@ class Hotel extends Component implements HasForms, HasTable
                     ->checkFileExistence(true)
                     ->defaultImageUrl(url('images/placeholder2.jpg'))
                     ->alignCenter(),
-                    //->simpleLightbox(),
                 Split::make([
                     TextColumn::make('name')
                         ->size(TextColumn\TextColumnSize::Large)
@@ -92,14 +100,6 @@ class Hotel extends Component implements HasForms, HasTable
                         ->searchable()
                         ->label('Kamar')
                         ->sortable(),
-                    TextColumn::make('name')
-                        ->formatStateUsing(fn () => 'Pesan Kamar')
-                        ->size(TextColumn\TextColumnSize::Large)
-                        ->weight(FontWeight::Bold)
-                        ->badge()
-                        ->url(fn (Room $room) => "https://wa.me/62895417012050?text=Saya%20ingin%20memesan%20hotel%20".$room->hotel->name."%20di%20kamar%20".$room->name, true )
-                        ->alignRight()
-                        ->color('success')
                 ]),
                 Split::make([
                     TextColumn::make('type')
@@ -116,6 +116,14 @@ class Hotel extends Component implements HasForms, HasTable
                         ->size(TextColumn\TextColumnSize::Medium)
                         ->sortable(),
                 ]),
+                TextColumn::make('name')
+                        ->formatStateUsing(fn () => 'Pesan Kamar')
+                        ->size(TextColumn\TextColumnSize::Large)
+                        ->weight(FontWeight::Bold)
+                        ->badge()
+                        ->url(fn (Room $room) => route('room', ['id' => $room->id]))
+                        ->alignRight()
+                        ->color('success'),
             ])
             ->space(3)
             ->extraAttributes([

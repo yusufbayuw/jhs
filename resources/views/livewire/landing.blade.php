@@ -2,4 +2,5 @@
     {{ $this->table }}
      
     {{ $this->renderLayoutViewPersister() }}
+
 </div>

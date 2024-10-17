@@ -43,7 +43,7 @@ class BookingResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('check_out_date')
                     ->maxLength(255),
-                Forms\Components\DatePicker::make('date'),
+                //Forms\Components\DatePicker::make('date'),
                 Forms\Components\TextInput::make('number_of_days')
                     ->numeric(),
                 Forms\Components\TextInput::make('amount')

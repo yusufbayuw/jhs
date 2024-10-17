@@ -1,12 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthSSOController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LaporanBulananCabangController;
-use App\Http\Controllers\PenilaianController;
 use App\Livewire\Hotel;
 use App\Livewire\Landing;
+use App\Livewire\Room;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +19,14 @@ use App\Livewire\Landing;
 Route::get('/laravel/login', function () {
     return redirect('portal/login');
 })->name('login');
-Route::get('/', Landing::class)->name('home');
-Route::get('/hotel/{id}', Hotel::class)->name('hotel');
-//Route::get('angka-kredit-laporan/export/', [PenilaianController::class, 'export']);
+Route::get('/', Landing::class)->name('home'); // choose hotel
+Route::get('/hotel/{id}', Hotel::class)->name('hotel'); // book room
+Route::get('/room/{id}', Room::class)->name('room'); // room detail
+//Route::post('/room/{id}/book', Room::class)->name('room.book'); // room book
+//Route::get('/booking/payment/{id}', Booking::class)->name('booking'); // booking details
+//Route::get('/booking/payment/{id}/process', Payment::class)->name('booking'); // booking process
+//Route::get('/booking/payment/{id}', Payment::class)->name('payment'); // payment details
+
 
 Route::get('portal/login/google', [AuthSSOController::class, 'redirectToGoogle'])->name('login.google');
 Route::get('portal/login/google/callback', [AuthSSOController::class, 'handleGoogleCallback']);
