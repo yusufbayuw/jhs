@@ -2,9 +2,12 @@
 
 namespace App\Livewire;
 
+use App\Models\Booking;
 use App\Models\Room as ModelsRoom;
 use Carbon\Carbon;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -44,10 +47,6 @@ class Room extends Component implements HasForms, HasInfolists
                     ->tabs([
                         Tabs\Tab::make('Detail')
                             ->schema([
-                                ImageEntry::make('image')
-                                    ->defaultImageUrl(url('images/placeholder2.jpg'))
-                                    ->label('')
-                                    ->height(300),
                                 TextEntry::make('hotel.name')
                                     ->label('Hotel')
                                     ->inlineLabel(),
@@ -60,8 +59,15 @@ class Room extends Component implements HasForms, HasInfolists
                                 TextEntry::make('facility')
                                     ->label('Fasilitas')
                                     ->inlineLabel(),
+                            ]),
+                        Tabs\Tab::make('Gambar')
+                            ->schema([
+                                ImageEntry::make('image')
+                                    ->defaultImageUrl(url('images/placeholder2.jpg'))
+                                    ->label('')
+                                    ->height(300),
                             ])
-                    ])
+                    ]),
             ]);
     }
 
@@ -71,42 +77,78 @@ class Room extends Component implements HasForms, HasInfolists
         //dd($dataRoom["hotel_id"]);
         return $form
             ->schema([
-                TextInput::make('hotel_id')
-                    ->default($dataRoom["hotel_id"]),
-                DatePicker::make('check_in_date')
-                    ->native(false)
-                    ->required()
-                    ->locale('id')
-                    ->displayFormat('d M Y')
-                    ->live()
-                    ->minDate(now()),
-                DatePicker::make('check_out_date')
-                    ->required()
-                    ->native(false)
-                    ->locale('id')
-                    ->displayFormat('d M Y')
-                    ->live()
-                    ->afterStateUpdated(function (Set $set, Get $get, $state) use ($dataRoom) {
-                        $numberOfDays = Carbon::parse($state)->diffInDays(Carbon::parse($get('check_in_date')));
-                        $set('number_of_days', $numberOfDays);
-                        $set('amount', $numberOfDays * (float)$dataRoom["price_per_night"]);
-                    })
-                    ->minDate(fn(Get $get) => $get('check_in_date') ? Carbon::parse($get('check_in_date'))->addDay() : (now()))
-                    ->hidden(fn(Get $get) => $get('check_in_date') ? false : true),
-                TextInput::make('number_of_days')
-                    ->label('Selama (hari)')
-                    ->integer()
-                    ->readOnly(),
-                TextInput::make('amount')
-                    ->label('Total')
-                    ->numeric()
+                Section::make('Pesan Kamar')
+                    ->description('Pilih tanggal Check In dan Check Out')
+                    ->schema([
+                        Hidden::make('user_id')
+                            ->default(auth()->user()->id),
+                        Hidden::make('room_id')
+                            ->default($dataRoom["id"]),
+                        DatePicker::make('check_in_date')
+                            ->native(false)
+                            ->required()
+                            ->label('Tanggal Check In')
+                            ->locale('id')
+                            ->displayFormat('d M Y')
+                            ->live()
+                            ->minDate(today()),
+                        DatePicker::make('check_out_date')
+                            ->required()
+                            ->label('Tanggal Check Out')
+                            ->native(false)
+                            ->locale('id')
+                            ->displayFormat('d M Y')
+                            ->live()
+                            ->afterStateUpdated(function (Set $set, Get $get, $state) use ($dataRoom) {
+                                $numberOfDays = Carbon::parse($state)->diffInDays(Carbon::parse($get('check_in_date')));
+                                $set('number_of_days', $numberOfDays);
+                                $set('amount', $numberOfDays * (float)$dataRoom["price_per_night"]);
+                            })
+                            ->minDate(fn(Get $get) => $get('check_in_date') ? Carbon::parse($get('check_in_date'))->addDay() : (today()))
+                            ->hidden(fn(Get $get) => $get('check_in_date') ? false : true),
+                        TextInput::make('number_of_days')
+                            ->label('Selama (hari)')
+                            ->integer()
+                            ->readOnly(),
+                        TextInput::make('amount')
+                            ->label('Harga Total')
+                            ->numeric()
+                            ->readOnly(),
+                        Hidden::make('status')
+                            ->default('Menunggu Pembayaran'),
+                    ]),
             ])
             ->statePath('data');
     }
 
-    public function create(): void
+    public function create()
     {
-        dd($this->form->getState());
+        $booking = Booking::create($this->form->getState());
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => $booking->id,
+                'gross_amount' => $booking->amount,
+            ),
+            'customer_details' => array(
+                'first_name' => auth()->user()->name,
+                'email' => auth()->user()->email,
+            ),
+        );
+        // Set your Merchant Server Key
+        \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = false;
+        // Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = true;
+        
+        $snapToken = \Midtrans\Snap::getSnapToken($params);
+
+        $booking->snap_token = $snapToken;
+        $booking->save();
+
+        return redirect(route('booking', $booking->id));
     }
 
     public function render()

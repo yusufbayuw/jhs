@@ -36,7 +36,6 @@ class BookingResource extends Resource
                 Forms\Components\Select::make('user_id')
                     ->relationship('user', 'name'),
                 Forms\Components\TextInput::make('hotel_id')
-                    ->tel()
                     ->numeric(),
                 Forms\Components\TextInput::make('check_in_date')
                     ->required()

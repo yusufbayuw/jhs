@@ -15,6 +15,11 @@ class AuthSSOController extends Controller
         return Socialite::driver('google')->redirect();
     }
 
+    public function redirectUserToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
     public function handleGoogleCallback()
     {
         try {
@@ -32,6 +37,28 @@ class AuthSSOController extends Controller
             );
             Auth::login($user);
             return redirect()->intended('/portal');
+        } catch (\Throwable $th) {
+            return redirect(route('login'));
+        }
+    }
+
+    public function handleUserGoogleCallback()
+    {
+        try {
+            $googleUser = Socialite::driver('google')->stateless()->user();
+            
+            $user = User::firstOrCreate(
+                ['email' => $googleUser->email,],
+                [
+                    'name' => $googleUser->name,
+                    'avatar' => $googleUser->avatar,
+                    'open_id' => $googleUser->id,
+                    //'given_name' => $googleUser->user->given_name,
+                    //'family_name' => $googleUser->user->family_name,
+                ]
+            );
+            Auth::login($user);
+            return redirect()->intended('/panel');
         } catch (\Throwable $th) {
             return redirect(route('login'));
         }

@@ -25,6 +25,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/socialite": "^5.14",
         "laravel/tinker": "^2.8",
+        "midtrans/midtrans-php": "^2.6",
         "njxqlus/filament-lightbox": "^3.2",
         "predis/predis": "^2.2",
         "pxlrbt/filament-excel": "^2.1",

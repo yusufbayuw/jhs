@@ -8,5 +8,6 @@ export default {
         './vendor/filament/**/*.blade.php',
         './vendor/solution-forest/filament-tree/resources/**/*.blade.php',
         "./vendor/chrisreedio/socialment/resources/**/*.blade.php",
+        './resources/views/livewire/**/*.blade.php',
     ],
 }
